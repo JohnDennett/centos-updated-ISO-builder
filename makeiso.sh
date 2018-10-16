@@ -4,8 +4,7 @@ set -x
 
 # Set global constants:
 LINUX_ISO_PATH=./working_directory/mounted-centos-iso
-TARGET_ISO_DIRECTORY=./isolinux/
-#DOCKER_IMAGE_ID=b2ecbb8751df
+TARGET_ISO_DIRECTORY=./isolinux
 DOCKER_OUTPUT_DIRECTORY=working_directory/docker_output
 
 # Start Centos 7.5 docker container with several volumes and perform a reposync that grabs the updates, extras and centosplus repos.
@@ -14,9 +13,6 @@ sudo docker exec -t reposync '/docker_scripts/generate_reposync_folders.sh'
 
 # So, now we have a folder with the three reposynched repositories, ready to build into the new ISO..
 
-
-
-#exit 0
 
 
 
@@ -44,12 +40,12 @@ rsync -a -h --partial --stats ./custom/isolinux.cfg $TARGET_ISO_DIRECTORY
 
 # Now copy the three reposync repositories into target directory:
 rsync -a -h --partial --stats $DOCKER_OUTPUT_DIRECTORY/ $TARGET_ISO_DIRECTORY/
-exit 0
-(cd $TARGET_ISO_DIRECTORY/updates && createrepo .)
-(cd $TARGET_ISO_DIRECTORY/extras && createrepo .)
-(cd $TARGET_ISO_DIRECTORY/centosplus && createrepo .)
 
-exit 0
+(cd $TARGET_ISO_DIRECTORY/reposync/updates && createrepo .)
+(cd $TARGET_ISO_DIRECTORY/reposync/extras && createrepo .)
+(cd $TARGET_ISO_DIRECTORY/reposync/centosplus && createrepo .)
+
+
 
 #create repoc
 #createrepo
