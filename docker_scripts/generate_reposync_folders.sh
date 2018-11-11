@@ -13,7 +13,7 @@ mkdir -p reposync
 cd reposync
 
 # commenting first just to speed up developemnt process
-#reposync --gpgcheck --plugins --repoid=updates --newest-only --delete --downloadcomps --download-metadata --download_path=.
+reposync --gpgcheck --plugins --repoid=updates --newest-only --delete --downloadcomps --download-metadata --download_path=.
 reposync --gpgcheck --plugins --repoid=extras --newest-only --delete --downloadcomps --download-metadata --download_path=.
 reposync --gpgcheck --plugins --repoid=centosplus --newest-only --delete --downloadcomps --download-metadata --download_path=.
 

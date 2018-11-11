@@ -33,7 +33,7 @@ rsync -a -h --partial --stats --delete $LINUX_ISO_PATH/Packages/ $TARGET_ISO_DIR
 
 
 #Now copy kickstart file.
-#cp -p custom/custom-kickstart.cfg ./isolinux/ks/ 
+cp -p custom/custom-kickstart.cfg ./isolinux/ks/ 
 rsync -a -h --partial --stats --delete ./custom/custom-kickstart.cfg $TARGET_ISO_DIRECTORY/ks/
 rsync -a -h --partial --stats ./custom/isolinux.cfg $TARGET_ISO_DIRECTORY
 
